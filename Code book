@@ -1,0 +1,37 @@
+
+- **Domain**  
+  - `t` : time domain signals  
+  - `f` : frequency domain signals  
+
+- **Instrument**  
+  - `BodyAcc` : body acceleration  
+  - `GravityAcc` : gravity acceleration  
+  - `BodyGyro` : body gyroscope  
+
+- **Variable**  
+  - `X`, `Y`, `Z` : axis of measurement  
+
+- **Statistic**  
+  - `mean()` : mean value  
+  - `std()` : standard deviation  
+
+**Examples:**
+- `tBodyAcc-mean()-X` → mean of body acceleration in X-axis (time domain)  
+- `fBodyGyro-std()-Z` → standard deviation of body gyroscope signal in Z-axis (frequency domain)
+
+---
+
+## Transformations Performed
+1. **Merged datasets**: Combined training and test sets using `rbind()`.  
+2. **Extracted only mean and standard deviation measurements** using `grep("-(mean|std)\\(\\)", features$V2)`.  
+3. **Replaced activity numbers with descriptive names** using `merge()` with `activity_labels.txt`.  
+4. **Labeled variables with descriptive names** from `features.txt`.  
+5. **Created a second tidy dataset** grouped by `Subject` and `Activity`, calculating the **average of each variable**.  
+
+---
+
+## Notes
+- Each row in `final_tidy` corresponds to a **unique subject-activity combination**.  
+- There are **180 rows** (30 subjects × 6 activities).  
+- There are **66 feature columns** (mean and standard deviation measurements) plus `Subject` and `Activity`.
+
